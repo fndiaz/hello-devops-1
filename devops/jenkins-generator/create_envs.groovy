@@ -159,6 +159,46 @@ kubectl delete sc mysql-db
 kubectl delete pvc mysql-db
 
 kubectl delete cm mysql-init
+kubectl delete cm mysql-select
+"""
+
+  return var_shell
+}
+
+
+def createJob4(repo, credentials_git){
+
+  job("config_select_myslq") {
+    scm {
+        git {
+        remote {
+                url(repo)
+                credentials(credentials_git)
+              }
+            branch("master")
+        }
+    }
+
+    logRotator {
+      daysToKeep(-1)
+      numToKeep(10)
+      artifactDaysToKeep(-1)
+      artifactNumToKeep(-1)
+    }
+
+      steps {
+      shell(getShell4())
+      }
+  }
+}
+
+
+private String getShell4() {
+
+    String var_shell
+    var_shell="""
+POD=\$(kubectl get pod -l app=mysql -o jsonpath="{.items[0].metadata.name}")
+kubectl exec -ti \$POD sh /usr/local/mysql-select.sh
 """
 
   return var_shell

@@ -36,6 +36,9 @@ spec:
           - name: mysql-init-volume
             mountPath: /usr/local/mysql-init.sh
             subPath: mysql-init.sh
+          - name: mysql-select-volume
+            mountPath: /usr/local/mysql-select.sh
+            subPath: mysql-select.sh
       volumes:
       - name: mysql-db
         persistentVolumeClaim:
@@ -43,6 +46,10 @@ spec:
       - name: mysql-init-volume
         configMap:
           name: mysql-init
+          defaultMode: 0777
+      - name: mysql-select-volume
+        configMap:
+          name: mysql-select
           defaultMode: 0777
   replicas: 1
   selector:

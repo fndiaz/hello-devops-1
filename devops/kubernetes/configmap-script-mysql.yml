@@ -10,3 +10,13 @@ data:
     CREATE TABLE IF NOT EXISTS Messages (ID int NOT NULL AUTO_INCREMENT, message VARCHAR(255), PRIMARY KEY (ID));"
     mysql -padmin -e \
     "ALTER USER 'fndiaz' IDENTIFIED WITH mysql_native_password BY 'fndiaz';"
+
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: mysql-select
+data:
+  mysql-select.sh: |
+    mysql -u fndiaz -pfndiaz hello -e \
+    USE hello;
+    select * from Messages;"
