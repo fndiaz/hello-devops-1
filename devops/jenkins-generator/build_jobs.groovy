@@ -34,7 +34,7 @@ def createJob(app, data){
 
 		wrappers {
             credentialsBinding {
-            usernamePassword('DOCKERUSER', 'DOCKERPASS', 'credentials_docker')
+            usernamePassword('DOCKERUSER', 'DOCKERPASS', data.credentials_docker)
         }
     	}
 
