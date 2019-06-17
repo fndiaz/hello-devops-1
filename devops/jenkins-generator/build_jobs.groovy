@@ -19,6 +19,7 @@ def createJob(app, data){
 	    	git {
 				remote {
 	            	url(data.url)
+	            	credentials('${data.credentials_git}')
 	            }
 	        	branch(data.branch)
 	    	}
@@ -33,7 +34,7 @@ def createJob(app, data){
 
 		wrappers {
             credentialsBinding {
-            usernamePassword('DOCKERUSER', 'DOCKERPASS', 'dockerhub')
+            usernamePassword('DOCKERUSER', 'DOCKERPASS', 'credentials_docker')
         }
     	}
 

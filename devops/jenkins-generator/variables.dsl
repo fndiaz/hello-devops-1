@@ -4,7 +4,8 @@ app_job {
     branch = 'master'
     rotate_builds = 10
     pos_build = 'deploy-hello-node'
-    credentials = 'dockerhub'
+    credentials_docker = 'dockerhub'
+    credentials_git = 'github'
     user_dockerhub = 'helloapp'
   }
 
@@ -13,7 +14,8 @@ app_job {
     branch = 'master'
     rotate_builds = 10
     pos_build = 'deploy-hello-node'
-    credentials = 'dockerhub'
+    credentials_docker = 'dockerhub'
+    credentials_git = 'github'
     user_dockerhub = 'helloapp'
   }
 
