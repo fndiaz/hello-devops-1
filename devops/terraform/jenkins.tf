@@ -28,6 +28,11 @@ resource "aws_instance" "jenkins" {
          destination = "/tmp/configmap.yaml"
        }
 
+       provisioner "file" {
+         content = "${data.template_file.aws.rendered}"
+         destination = "/tmp/aws"
+       }
+
     connection {
       type        = "ssh"
       private_key = "${file("/root/key-jenkins-hello/id_rsa")}"
@@ -50,6 +55,14 @@ data "template_file" "configmap" {
   template = "${file("templates/configmap")}"
 vars = {
    rolearn = "${aws_iam_role.hello-node.arn}"
+  }
+}
+
+data "template_file" "aws" {
+  template = "${file("templates/aws")}"
+vars = {
+   accesskey = "${var.access_key}"
+   secretkey = "${var.secret_key}"
   }
 }
 

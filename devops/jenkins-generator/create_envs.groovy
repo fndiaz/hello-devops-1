@@ -105,6 +105,7 @@ private String getShell2() {
     String var_shell
     var_shell="""
 cp /tmp/config ~/.kube/
+cp /tmp/aws ~/.aws/credentials
 kubectl apply -f /tmp/configmap.yaml
 sleep 60
 kubectl get nodes
