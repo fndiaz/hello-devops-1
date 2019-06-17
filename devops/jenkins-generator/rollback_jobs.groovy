@@ -19,6 +19,7 @@ def createJob(app, data){
 	    	git {
 				remote {
 	            	url(data.url)
+	            	credentials(data.credentials_git)
 	            }
 	        	branch(data.branch)
 	    	}
