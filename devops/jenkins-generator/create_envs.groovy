@@ -79,6 +79,7 @@ def createJob2(repo){
         git {
         remote {
                 url(repo)
+                credentials(credentials_git)
               }
             branch("master")
         }
