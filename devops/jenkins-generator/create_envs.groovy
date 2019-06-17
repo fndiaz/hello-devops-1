@@ -72,7 +72,7 @@ echo "URL: http://\$ELB"
 
 
 
-def createJob2(repo){
+def createJob2(repo, credentials_git){
 
   job("create_configmap") {
     scm {
