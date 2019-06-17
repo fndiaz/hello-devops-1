@@ -32,7 +32,7 @@ variable "ami-jenkins" {
 	description = "Base AMI to launch the instances"
 	default = {
 	us-east-1 		= "ami-03e8bf6cdeb27ed10"
-	us-east-2 		= "ami-0908fc0b26eefb4ca"
-	us-west-2 		= "ami-0e32ec5bc225539f5"
+	us-east-2 		= "ami-002d991fd214cd413"
+	us-west-2 		= "ami-0fcb2d0ff3f9809a2"
 	}
 }
