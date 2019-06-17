@@ -76,9 +76,9 @@ Para verificar se os dados foram enviados para o Banco, rode o Job "config_selec
 3. Deploy Contínuo
 
 Cada aplicação tem sua aba de pipeline para deploy, onde é feito o build, deploy e se necessário rollback
-build: faz o buil da imagem docker atualizada e sobe para um repositório demo
-deploy: faz o deployment no kubernetes com a versão nova
-rollback: caso necessário o job volta a aplicação para a versão anterior
+- build: faz o buil da imagem docker atualizada e sobe para um repositório demo
+- deploy: faz o deployment no kubernetes com a versão nova
+- rollback: caso necessário o job volta a aplicação para a versão anterior
 
 Obs: Caso seja necessário é possível alterar o repositório git da aplicação e dockerhub dentro de "devops/jenkins-generator/variables.dsl
 Se for modificado é preciso rodar o Job "jenkins-generator", para atualizar as configurações, também será necessário atualizar as "credentials" no Jenkins.
