@@ -1,6 +1,6 @@
 app_job {
   'hello-python' {
-    url = 'https://github.com/fndiaz/hello-devops'
+    url = 'https://github.com/helloapp-ci/hello-devops.git'
     branch = 'master'
     rotate_builds = 10
     pos_build = 'deploy-hello-node'
@@ -10,7 +10,7 @@ app_job {
   }
 
   'hello-node' {
-    url = 'https://github.com/fndiaz/hello-devops'
+    url = 'https://github.com/helloapp-ci/hello-devops.git'
     branch = 'master'
     rotate_builds = 10
     pos_build = 'deploy-hello-node'
