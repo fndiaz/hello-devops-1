@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: deploy-rabbit
+  labels:
+    name: deploy-rabbit
+    type: rabbit
+
+spec:
+  template:
+    metadata:
+      annotations:
+        pod.beta.kubernetes.io/hostname: myhostname
+      name: rabbit
+      labels:
+        app: rabbit
+        type: rabbit
+    spec:
+      containers:
+        - name: rabbitmq
+          image: rabbitmq:3-management
+          ports:
+            - containerPort: 5672
+              name: port-5672
+            - containerPort: 4369
+              name: port-4369
+            - containerPort: 5671
+              name: port-5671
+            - containerPort: 15672
+              name: port-15672
+            - containerPort: 25672
+              name: port-25672
+          env:
+            - name: RABBITMQ_DEFAULT_USER
+              value: 'admin'
+            - name: RABBITMQ_DEFAULT_PASS
+              value: 'admin'
+  replicas: 1
+  selector:
+    matchLabels:
+      app: rabbit

@@ -1,0 +1,50 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: deploy-mysql
+  labels:
+    name: deploy-mysql
+    type: mysql
+
+spec:
+  template:
+    metadata:
+      name: mysql
+      labels:
+        app: mysql
+        type: mysql
+    spec:
+      containers:
+        - name: mysql
+          image: mysql
+          ports:
+            - containerPort: 3306
+              name: port-3306
+          env:
+            - name: MYSQL_ROOT_PASSWORD
+              value: 'admin'
+            - name: MYSQL_DATABASE
+              value: 'hello'
+            - name: MYSQL_USER
+              value: 'fndiaz'
+            - name: MYSQL_PASSWORD
+              value: 'fndiaz'
+          volumeMounts:
+          - name: mysql-db
+            mountPath: /var/lib/mysql
+            subPath: mysql
+          - name: mysql-init-volume
+            mountPath: /usr/local/mysql-init.sh
+            subPath: mysql-init.sh
+      volumes:
+      - name: mysql-db
+        persistentVolumeClaim:
+          claimName: mysql-db
+      - name: mysql-init-volume
+        configMap:
+          name: mysql-init
+          defaultMode: 0777
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mysql

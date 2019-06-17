@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hello-node
+  labels:
+    name: hello-node
+    type: backend
+
+spec:
+  template:
+    metadata:
+      name: hello-node
+      labels:
+        app: hello-node
+        type: backend
+    spec:
+      containers:
+        - name: hello-node
+          image: fndiaz/hello-node:v03
+          ports:
+            - containerPort: 3000
+          env:
+            - name: RABBITMQ_HOST
+              value: 'rabbitmq'
+            - name: RABBITMQ_PORT
+              value: '5672'
+            - name: RABBITMQ_QUEUE
+              value: 'hello'
+            - name: RABBITMQ_USER
+              value: 'admin'
+            - name: RABBITMQ_PASS
+              value: 'admin'
+            - name: MYSQL_HOST
+              value: 'mysql'
+            - name: MYSQL_USER
+              value: 'fndiaz'
+            - name: MYSQL_PASSWORD
+              value: 'fndiaz'
+            - name: MYSQL_DB
+              value: 'hello'
+  replicas: 1
+  selector:
+    matchLabels:
+      app: hello-node

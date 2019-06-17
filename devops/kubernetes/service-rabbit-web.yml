@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: rabbitmq-web
+  name: rabbitmq-web
+spec:
+  type: LoadBalancer
+  ports:
+    - targetPort: 15672
+      port: 15672
+  selector:
+    app: rabbit

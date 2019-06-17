@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hello-python
+  labels:
+    name: hello-python
+    type: frontend
+
+spec:
+  template:
+    metadata:
+      name: hello-python
+      labels:
+        app: hello-python
+        type: frontend
+    spec:
+      containers:
+        - name: hello-python
+          image: fndiaz/hello-python:v03
+          ports:
+            - containerPort: 8000
+          env:
+            - name: RABBITMQ_HOST
+              value: 'rabbitmq'
+            - name: RABBITMQ_PORT
+              value: '5672'
+            - name: RABBITMQ_QUEUE
+              value: 'hello'
+            - name: RABBITMQ_USER
+              value: 'admin'
+            - name: RABBITMQ_PASS
+              value: 'admin'
+
+  replicas: 1
+  selector:
+    matchLabels:
+      app: hello-python
