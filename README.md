@@ -31,7 +31,7 @@ algo parecido com isso: http://ip_jenkins:8080
 ```
 
 Uma imagem base de Jenkins, com alguns plugins pré instalados e credênciais para a demo está pronta.
-Mas lembrando essa é só uma imagem base, todo a configurtação de Jobs e Pipeline do Jenkisn está dentro da pasta jenkins-generator, vamos explorar isso mais pra frente.
+Mas lembrando essa é só uma imagem base, toda a configurtação de Jobs e Pipeline do Jenkisn está dentro da pasta jenkins-generator, vamos explorar isso mais pra frente.
 
 2. Subindo Stack da Aplicação
 Copie a URL do Jenkins no navegador e faça o login utilizando as credenciais para demo 
@@ -59,9 +59,9 @@ ip-10-0-0-69.ec2.internal   Ready    <none>   56s   v1.12.7
 ip-10-0-1-34.ec2.internal   Ready    <none>   60s   v1.12.7
 Finished: SUCCESS
 ```
-
+```
 Ainda na aba Configure rode o job: "config_create_enviroment"
-
+```
 Esse job irá criar toda a stack de ambiente, subindo os deployments, services, configmaps, persistentvoluems do kubernetes
 Esse job só irá concluir quando o loadbalance do frontend da aplicação estiver pronto
 No console output do job vamos ter o endereço do frontend algo como
