@@ -7,19 +7,20 @@
 //  println "generating application $name"
 //  println name
   //println data
-createJob("https://github.com/fndiaz/hello-devops.git")
-createJob2("https://github.com/fndiaz/hello-devops.git")
+createJob("https://github.com/helloapp-ci/hello-devops.git", "github")
+createJob2("https://github.com/helloapp-ci/hello-devops.git", "github")
 createView()
 //}
 
 
-def createJob(repo){
+def createJob(repo, credentials_git){
 
   job("create_envs") {
     scm {
         git {
         remote {
                 url(repo)
+                credentials(credentials_git)
               }
             branch("master")
         }
