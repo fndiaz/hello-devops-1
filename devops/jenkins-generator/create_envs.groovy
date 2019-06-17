@@ -9,13 +9,14 @@
   //println data
 createJob("https://github.com/helloapp-ci/hello-devops.git", "github")
 createJob2("https://github.com/helloapp-ci/hello-devops.git", "github")
+createJob3("https://github.com/helloapp-ci/hello-devops.git", "github")
 createView()
 //}
 
 
 def createJob(repo, credentials_git){
 
-  job("create_envs") {
+  job("config_create_enviroments") {
     scm {
         git {
         remote {
@@ -74,7 +75,7 @@ echo "URL: http://\$ELB"
 
 def createJob2(repo, credentials_git){
 
-  job("create_configmap") {
+  job("config_create_configmap") {
     scm {
         git {
         remote {
@@ -112,6 +113,56 @@ kubectl get nodes
   return var_shell
 }
 
+def createJob3(repo, credentials_git){
+
+  job("config_delete_enviroments") {
+    scm {
+        git {
+        remote {
+                url(repo)
+                credentials(credentials_git)
+              }
+            branch("master")
+        }
+    }
+
+    logRotator {
+      daysToKeep(-1)
+      numToKeep(10)
+      artifactDaysToKeep(-1)
+      artifactNumToKeep(-1)
+    }
+
+      steps {
+      shell(getShell3())
+      }
+  }
+}
+
+
+private String getShell3() {
+
+    String var_shell
+    var_shell="""
+kubectl delete deploy deploy-mysql
+kubectl delete deploy deploy-rabbit
+kubectl delete deploy hello-python
+kubectl delete deploy hello-node
+
+kubectl delete service mysql
+kubectl delete service rabbitmq-web
+kubectl delete service rabbitmq
+kubectl delete service service-hello-python
+
+kubectl delete sc mysql-db
+kubectl delete pvc mysql-db
+
+kubectl delete cm mysql-init
+"""
+
+  return var_shell
+}
+
 
 def createView() {
 
@@ -121,7 +172,7 @@ def createView() {
       filterExecutors()
       jobs {
           //name('release-projectA')
-          regex('.*create.*')
+          regex('.*config.*')
       }
       columns {
           status()
