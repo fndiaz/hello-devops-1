@@ -13,9 +13,9 @@ Foi criada uma pasta "devops" na raiz do projeto, essa pasta contém os arquivos
 caminhe para dentro do diretório "devops/terraform"
 
 [ATTETION]: diponível somente nas regiões:
-us-east-1 - Virginia
-us-east-2 - Ohio
-us-west-2 - Oregon
+- us-east-1 - Virginia
+- us-east-2 - Ohio
+- us-west-2 - Oregon
 
 Execute:
 ```
@@ -42,14 +42,14 @@ Copie a URL do Jenkins no navegador e faça o login utilizando as credenciais pa
 Na tela de Jobs, podemos ver o Job "jenkins-generator", Esse Job criará toda nossa estrtura de Jobs e Pipeline no Jenkins.
 Ele executa scripts em Groovy e mantém toda nossa estrutura de Jobs centralizada e parametrizada, permitindo adicionar ou mudar configuração dos Jobs por meio de variáveis. 
 O próprio Jenkins provisionando o Jenkins =]
-
+```
 Rode o job: "jenkins-generator"
-
+```
 Atualizando a tela podemos ver toda nossa estrutura de Jobs e Pipeline criados
-
+```
 Vá até a aba "Configure"
 Rode o job: "config_create_configmap"
-
+```
 O job "create_configmap" atualiza o configmap do cluster kubernetes, para que os workes_nodes possam ingressar no cluster, utilizando uma rolearn já criada nos passos anteriores. 
 Ele também configura o kubectl para autenticação do cluster que usa aws-iam-authenticator.
 
