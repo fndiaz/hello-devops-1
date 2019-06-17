@@ -10,6 +10,7 @@
 createJob("https://github.com/helloapp-ci/hello-devops.git", "github")
 createJob2("https://github.com/helloapp-ci/hello-devops.git", "github")
 createJob3("https://github.com/helloapp-ci/hello-devops.git", "github")
+createJob4("https://github.com/helloapp-ci/hello-devops.git", "github")
 createView()
 //}
 
