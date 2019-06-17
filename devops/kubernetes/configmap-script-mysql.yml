@@ -18,5 +18,5 @@ metadata:
 data:
   mysql-select.sh: |
     mysql -u fndiaz -pfndiaz hello -e \
-    USE hello;
-    select * from Messages;"
+    "USE hello;
+     select * from Messages;"
