@@ -9,7 +9,7 @@ Instruções para subir solução
 Foi criada uma pasta "devops" na raiz do projeto, essa pasta contém os arquivos de configuração para subir toda a infraestrutura na AWS, configurar o Cluster Kubernetes(EKS), subir o servdor JenkinsCI e fazer o deploy contíniuo.
 
 
-1. Subindo estrutura AWS
+##### 1. Subindo estrutura AWS
 caminhe para dentro do diretório "devops/terraform"
 
 [ATTETION]: diponível somente nas regiões:
@@ -33,7 +33,7 @@ algo parecido com isso: http://ip_jenkins:8080
 Uma imagem base de Jenkins, com alguns plugins pré instalados e credênciais para a demo está pronta.
 Mas lembrando essa é só uma imagem base, toda a configurtação de Jobs e Pipeline do Jenkisn está dentro da pasta jenkins-generator, vamos explorar isso mais pra frente.
 
-2. Subindo Stack da Aplicação
+##### 2. Subindo Stack da Aplicação
 Copie a URL do Jenkins no navegador e faça o login utilizando as credenciais para demo 
 - http://ip_jenkins:8080
 - user: admin
@@ -73,7 +73,7 @@ Finished: SUCCESS
 Neste momento a aplicação já está no ar e funcionando, acesse a URL do front e faça inserções no form
 Para verificar se os dados foram enviados para o Banco, rode o Job "config_select_mysql" na aba Configure e veja a saída no "Console Output"
 
-3. Deploy Contínuo
+##### 3. Deploy Contínuo
 
 Cada aplicação tem sua aba de pipeline para deploy, onde é feito o build, deploy e se necessário rollback
 - build: faz o buil da imagem docker atualizada e sobe para um repositório demo
@@ -86,7 +86,7 @@ Se for modificado é preciso rodar o Job "jenkins-generator", para atualizar as 
 Entre nas abas de pipeline e execute o deploy
 Fique a vontade para testar o rollback
 
-4. Destruindo ambiente
+##### 4. Destruindo ambiente
 
 Antes de rodar o terraform destroy, rode o Job "config_delete_enviroments" que fica dentro da aba config, ele vai deletar toda a stack do kubernetes incluindo os loadbalancers da aws, coisa que o terraform não será capaz de fazer pois não foi o mesmo que os criou.
 
